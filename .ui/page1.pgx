@@ -8,7 +8,8 @@
 				"children": [
 					"42b807d1",
 					"b7d28cff",
-					"980522a9",
+					"8cde-eb0e-cf11-7aeb",
+					"a6d3-e12a-a4d4-e441",
 					"9e49-7873-afba-472b"
 				],
 				"isRemovable": true,
@@ -20,7 +21,7 @@
 			"type": "Page",
 			"userProps": {
 				"flexProps": {
-					"justifyContent": "SPACE_BETWEEN",
+					"justifyContent": "FLEX_START",
 					"alignItems": "STRETCH"
 				},
 				"orientation": "PORTRAIT",
@@ -29,8 +30,7 @@
 				"paddingRight": 16,
 				"safeAreaEnabled": true
 			},
-			"version": "6.15.1",
-			"degree": 0
+			"version": "6.15.1"
 		},
 		{
 			"className": ".sf-statusBar",
@@ -44,8 +44,7 @@
 			"type": "StatusBar",
 			"userProps": {
 				"visible": true
-			},
-			"degree": 1
+			}
 		},
 		{
 			"className": ".sf-headerBar",
@@ -61,46 +60,70 @@
 			"userProps": {
 				"title": "Page1",
 				"visible": true
-			},
-			"degree": 1
+			}
 		},
 		{
-			"className": ".sf-label",
-			"id": "980522a9",
+			"className": ".flexLayout .materialTextBox-wrapper",
+			"hiddenComponent": false,
+			"id": "8cde-eb0e-cf11-7aeb",
+			"initialized": false,
 			"props": {
-				"autoHeight": 39.325842696629216,
 				"children": [],
-				"name": "lbl",
+				"name": "mtbDisplayName",
 				"parent": "e891b86d",
-				"text": "Page1",
 				"usePageVariable": true
 			},
-			"type": "Label",
-			"userProps": {
-				"autoHeight": 39.325842696629216,
-				"backgroundColor": "rgba( 255, 255, 255, 0 )",
-				"flexProps": {
-					"marginLeft": 20,
-					"marginRight": 20,
-					"alignSelf": "STRETCH",
-					"flexGrow": 1
-				},
-				"font": {
-					"size": 32,
-					"bold": false,
-					"italic": false,
-					"family": "SFProText",
-					"style": "Regular"
-				},
-				"height": 600,
-				"multiline": true,
-				"text": "Page1",
-				"textAlignment": "MIDCENTER",
-				"textColor": "rgba( 210, 210, 210, 1 )",
-				"usePageVariable": true,
-				"testId": "L-42gAben"
+			"source": {
+				"page": "__library__",
+				"type": "materialTextBox",
+				"id": "574a-10da-b765-48e5"
 			},
-			"degree": 1
+			"type": "FlexLayout",
+			"userProps": {
+				"flex": {
+					"positionType": 0
+				},
+				"flexProps": {
+					"positionType": "RELATIVE"
+				},
+				"height": 50,
+				"left": 0,
+				"testId": "rgVnxkBfC",
+				"top": 0,
+				"usePageVariable": true
+			}
+		},
+		{
+			"className": ".flexLayout .materialTextBox-wrapper",
+			"hiddenComponent": false,
+			"id": "a6d3-e12a-a4d4-e441",
+			"initialized": false,
+			"props": {
+				"children": [],
+				"name": "mtbEmail",
+				"parent": "e891b86d",
+				"usePageVariable": true
+			},
+			"source": {
+				"page": "__library__",
+				"type": "materialTextBox",
+				"id": "574a-10da-b765-48e5"
+			},
+			"type": "FlexLayout",
+			"userProps": {
+				"flex": {
+					"positionType": 0
+				},
+				"flexProps": {
+					"positionType": "RELATIVE"
+				},
+				"height": 50,
+				"left": 0,
+				"marginTop": 20,
+				"testId": "i0cLEOVJM",
+				"top": 0,
+				"usePageVariable": true
+			}
 		},
 		{
 			"className": ".sf-button",
@@ -110,7 +133,7 @@
 				"children": [],
 				"name": "btnNext",
 				"parent": "e891b86d",
-				"text": "Next Page",
+				"text": "Join Meeting",
 				"usePageVariable": true
 			},
 			"type": "Button",
@@ -120,12 +143,12 @@
 					"alignSelf": "AUTO",
 					"positionType": "RELATIVE"
 				},
-				"text": "Next Page",
+				"marginTop": 20,
+				"testId": "ucEDBF6ZMB",
+				"text": "Join Meeting",
 				"usePageVariable": true,
-				"width": null,
-				"testId": "ucEDBF6ZMB"
-			},
-			"degree": 1
+				"width": null
+			}
 		}
 	]
 }
