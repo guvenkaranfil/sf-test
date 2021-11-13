@@ -8,7 +8,7 @@
 				"children": [
 					"42b807d1",
 					"b7d28cff",
-					"980522a9",
+					"25cf-25fb-0bc1-4b37",
 					"9e49-7873-afba-472b"
 				],
 				"isRemovable": true,
@@ -29,8 +29,7 @@
 				"paddingRight": 16,
 				"safeAreaEnabled": true
 			},
-			"version": "6.15.1",
-			"degree": 0
+			"version": "6.15.1"
 		},
 		{
 			"className": ".sf-statusBar",
@@ -44,8 +43,7 @@
 			"type": "StatusBar",
 			"userProps": {
 				"visible": true
-			},
-			"degree": 1
+			}
 		},
 		{
 			"className": ".sf-headerBar",
@@ -61,46 +59,85 @@
 			"userProps": {
 				"title": "Page1",
 				"visible": true
-			},
-			"degree": 1
+			}
 		},
 		{
-			"className": ".sf-label",
-			"id": "980522a9",
+			"className": ".sf-flexLayout",
+			"id": "25cf-25fb-0bc1-4b37",
 			"props": {
-				"autoHeight": 39.325842696629216,
-				"children": [],
-				"name": "lbl",
-				"parent": "e891b86d",
-				"text": "Page1",
-				"usePageVariable": true
+				"children": [
+					"725f-2ed7-5de3-ed32",
+					"2fd0-0ce7-cf83-62cd",
+					"191d-653c-056a-af60"
+				],
+				"name": "flexLayout1",
+				"parent": "e891b86d"
 			},
-			"type": "Label",
+			"type": "FlexLayout",
 			"userProps": {
-				"autoHeight": 39.325842696629216,
-				"backgroundColor": "rgba( 255, 255, 255, 0 )",
 				"flexProps": {
-					"marginLeft": 20,
-					"marginRight": 20,
-					"alignSelf": "STRETCH",
 					"flexGrow": 1
 				},
-				"font": {
-					"size": 32,
-					"bold": false,
-					"italic": false,
-					"family": "SFProText",
-					"style": "Regular"
-				},
-				"height": 600,
-				"multiline": true,
-				"text": "Page1",
-				"textAlignment": "MIDCENTER",
-				"textColor": "rgba( 210, 210, 210, 1 )",
-				"usePageVariable": true,
-				"testId": "L-42gAben"
+				"height": 200,
+				"testId": "y0RXRMwjf"
+			}
+		},
+		{
+			"className": ".sf-button",
+			"id": "725f-2ed7-5de3-ed32",
+			"props": {
+				"children": [],
+				"name": "button1",
+				"parent": "25cf-25fb-0bc1-4b37",
+				"text": "button1"
 			},
-			"degree": 1
+			"type": "Button",
+			"userProps": {
+				"testId": "FDpl5XED2",
+				"text": "button1"
+			}
+		},
+		{
+			"className": ".flexLayout .materialTextBox-wrapper",
+			"hiddenComponent": false,
+			"id": "2fd0-0ce7-cf83-62cd",
+			"initialized": true,
+			"props": {
+				"children": [],
+				"name": "materialTextBox",
+				"parent": "25cf-25fb-0bc1-4b37",
+				"usePageVariable": true
+			},
+			"source": {
+				"page": "__library__",
+				"type": "materialTextBox",
+				"id": "574a-10da-b765-48e5"
+			},
+			"type": "FlexLayout",
+			"userProps": {
+				"flex": {
+					"positionType": 0
+				},
+				"height": 80,
+				"testId": "geHZziuot",
+				"usePageVariable": true
+			}
+		},
+		{
+			"className": ".sf-button",
+			"id": "191d-653c-056a-af60",
+			"props": {
+				"children": [],
+				"name": "button2",
+				"parent": "25cf-25fb-0bc1-4b37",
+				"text": "button2"
+			},
+			"type": "Button",
+			"userProps": {
+				"marginTop": 10,
+				"testId": "qfIXjhoT3",
+				"text": "button2"
+			}
 		},
 		{
 			"className": ".sf-button",
@@ -120,12 +157,11 @@
 					"alignSelf": "AUTO",
 					"positionType": "RELATIVE"
 				},
+				"testId": "ucEDBF6ZMB",
 				"text": "Next Page",
 				"usePageVariable": true,
-				"width": null,
-				"testId": "ucEDBF6ZMB"
-			},
-			"degree": 1
+				"width": null
+			}
 		}
 	]
 }
