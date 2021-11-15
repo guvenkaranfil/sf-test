@@ -1,0 +1,75 @@
+{
+	"components": [
+		{
+			"className": ".sf-listViewItem",
+			"id": "8263-1624-9414-b846",
+			"props": {
+				"children": [
+					"ffed-ddaa-6931-1307"
+				],
+				"name": "listViewItem1",
+				"parent": "57f4-201f-4bfc-5fc6"
+			},
+			"source": {
+				"page": "__library__"
+			},
+			"type": "ListViewItem",
+			"userProps": {
+				"flexProps": {},
+				"left": "0",
+				"testId": "5kcIRt4x7",
+				"top": "503.33"
+			}
+		},
+		{
+			"className": ".sf-flexLayout",
+			"id": "ffed-ddaa-6931-1307",
+			"props": {
+				"children": [
+					"48eb-4bc5-56ba-fedf"
+				],
+				"name": "flexLayout1",
+				"parent": "8263-1624-9414-b846"
+			},
+			"source": {
+				"page": "__library__"
+			},
+			"type": "FlexLayout",
+			"userProps": {
+				"backgroundColor": "rgba( 255, 255, 255, 0 )",
+				"testId": "WHGf4Fq0m"
+			}
+		},
+		{
+			"className": ".flexLayout .materialTextBox-wrapper",
+			"hiddenComponent": false,
+			"id": "48eb-4bc5-56ba-fedf",
+			"initialized": true,
+			"props": {
+				"children": [],
+				"name": "materialTextBox",
+				"parent": "ffed-ddaa-6931-1307",
+				"usePageVariable": true
+			},
+			"source": {
+				"page": "__library__",
+				"type": "materialTextBox",
+				"id": "574a-10da-b765-48e5"
+			},
+			"type": "FlexLayout",
+			"userProps": {
+				"flex": {
+					"positionType": 0
+				},
+				"flexProps": {
+					"positionType": "RELATIVE"
+				},
+				"height": 50,
+				"left": 0,
+				"testId": "jzMHja3X1",
+				"top": 0,
+				"usePageVariable": true
+			}
+		}
+	]
+}
