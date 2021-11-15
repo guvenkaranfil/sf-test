@@ -83,14 +83,12 @@ export default class Page1 extends Page1Design {
         };
         this.lvMain.onRowBind = (item: ListViewItem1, index) => {
             const itemData = this.data[index];
-            console.log(index );
-            console.log(this.data[index].inputView ? "null" : "not null");
             
-            let picker = this.data[index].inputView;
-            /*if(itemData.showPicker){
+            let picker = null;//this.data[index].inputView;
+            if(itemData.showPicker){
                 picker = new MyPicker();
                 picker.items = ["ada", "ada"]
-            }*/
+            }
             item.materialTextBox.options = {
                 hint: this.data[index].item.hint
             };
