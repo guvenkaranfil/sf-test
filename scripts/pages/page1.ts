@@ -4,6 +4,26 @@ import PageTitleLayout from 'components/PageTitleLayout';
 import System from '@smartface/native/device/system';
 const Screen = require('@smartface/native/device/screen');
 
+import AndroidConfig from "@smartface/native/util/Android/androidconfig";
+import TextView from '@smartface/native/ui/textview';
+import Color from '@smartface/native/ui/color';
+import FlexLayout, { AlignItems, AlignSelf } from '@smartface/native/ui/flexlayout';
+import Button from '@smartface/native/ui/button';
+import EllipsizeMode from '@smartface/native/ui/ellipsizemode';
+import TextAlignment from '@smartface/native/ui/textalignment';
+import Label from '@smartface/native/ui/label';
+import View from '@smartface/native/ui/view';
+import ListView from '@smartface/native/ui/listview';
+import ListViewItem from '@smartface/native/ui/listviewitem';
+import TextBox from '@smartface/native/ui/textbox';
+import TextArea from "@smartface/native/ui/textarea";
+import MaterialTextBox from '@smartface/native/ui/materialtextbox';
+const {
+    MATCH_PARENT,
+    WRAP_CONTENT
+} = require("@smartface/native/util/Android/layoutparams");
+
+
 function generateRandomStr() {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -15,17 +35,11 @@ function generateRandomStr() {
     }
     return result;
 }
-import AndroidConfig from "@smartface/native/util/Android/androidconfig";
-import TextView from '@smartface/native/ui/textview';
-import Color from '@smartface/native/ui/color';
-import FlexLayout from '@smartface/native/ui/flexlayout';
-import Button from '@smartface/native/ui/button';
-import EllipsizeMode from '@smartface/native/ui/ellipsizemode';
-import TextAlignment from '@smartface/native/ui/textalignment';
-const {
-    MATCH_PARENT,
-    WRAP_CONTENT
-} = require("@smartface/native/util/Android/layoutparams");
+
+
+function generateRandomList(length = 10): string[] {
+    return [...Array(length)].map(() => generateRandomStr());
+}
 
 export default class Page1 extends Page1Design {
     router: any;
@@ -36,158 +50,350 @@ export default class Page1 extends Page1Design {
         // Overrides super.onLoad method
         this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
 
-        /*const flexlayout = new FlexLayout({
-        });
+        this.simpleLabelTest();
+        //this.simpleLabelTest2();
+        //this.simleListViewTest();
+        //this.simleListViewTest2();
+        //this.simpleTextInputTest();
+        //this.simleListViewMtbTest();
+        //this.simpleLabelTestNested();
+    }
 
-        flexlayout.alignItems = FlexLayout.AlignItems.CENTER;
-        flexlayout.justifyContent = FlexLayout.JustifyContent.CENTER;
-        flexlayout.padding = 10;
-        flexlayout.backgroundColor = Color.GREEN;
-        const flexlayout2 = new FlexLayout({});
-        flexlayout2.backgroundColor = Color.RED;
-        flexlayout2.yogaNode.setHeightAuto();
-        /*const flexlayout3 = new FlexLayout({});
-        flexlayout3.backgroundColor = Color.BLUE*/
-
-        //const NativeRelativeLayout = requireClass("android.widget.RelativeLayout");
-        //const layoutParamsRoot = new NativeRelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
-        //const relativeLayout = new NativeRelativeLayout(AndroidConfig.activity);
-        //relativeLayout.setLayoutParams(layoutParamsRoot);
-
+    getPageLayout() {
         const NativeSFR = requireClass(AndroidConfig.packageName + ".R");
         //@ts-ignore
-        var pageLayout = this.pageLayoutContainer.findViewById(NativeSFR.id.page_layout);
+        const pageLayout = this.pageLayoutContainer.findViewById(NativeSFR.id.page_layout);
+        return pageLayout;
+    }
 
-        /*var myTextview = new TextView({
-            text: "This is my textview sssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaddddddddddddd",
-            visible: true
-        });
-        myTextview.backgroundColor = Color.GRAY;
-        myTextview.nativeObject.setSingleLine(false);*/
-        //myTextview.nativeObject.setLayoutParams(layoutParamsRoot);
-        //@ts-ignore
-        //myTextview.yogaNode.setHeightAuto();
-        //@ts-ignore
-        //myTextview.yogaNode.setMaxHeight(500);
-        //@ts-ignore
-        //myTextview.yogaNode.setHeight(200);
-        //@ts-ignore
-        //myTextview.yogaNode.setWidthAuto();
-        //@ts-ignore
-        //myTextview.yogaNode.setFlexShrink(1);
-        //@ts-ignore
-        //myTextview.yogaNode.setFlexBasisAuto();
-
-        //flexlayout.yogaNode.setFlexBasisAuto();
-
-        //@ts-ignore
-        //myTextview.yogaNode.setWidthAuto();
-
-        //relativeLayout.addView(myTextview.nativeObject);
-        /*const NativeTextUtils = requireClass("android.text.TextUtils");
-        NativeTextUtils.TruncateAt.END
-        //myTextview.maxLines = 3;
-        myTextview.nativeObject.setEllipsize(NativeTextUtils.TruncateAt.END);
-        setInterval(() => {
-            //myTextview.nativeObject.setText("" + generateRandomStr());
-            myTextview.text = "" + generateRandomStr();
-            myTextview.yogaNode.calculateLayout(flexlayout.width, flexlayout.height);
-            flexlayout2.yogaNode.calculateLayout(flexlayout.width, flexlayout.height);
-            flexlayout2.applyLayout();
-        }, 1000);
-
+    clearPageLayout() {
         //@ts-ignore    
-        pageLayout.removeAllViews();
-        flexlayout2.addChild(myTextview);
-        flexlayout2.padding = 10;
+        this.getPageLayout().removeAllViews();
+    }
+
+    addViewToPageLayout(view: View) {
+        //@ts-ignore    
+        this.getPageLayout().addView(view);
+    }
+
+    simpleLabelTest() {
+        this.clearPageLayout();
+
+        const flexLayout = new FlexLayout();
+        flexLayout.backgroundColor = Color.YELLOW;
+
+        const label = new Label();
+        label.backgroundColor = Color.WHITE;
+        //label.maxLines = 3;
+        const NativeTextUtils = requireClass("android.text.TextUtils");
+        //@ts-ignore
+        label.nativeObject.setEllipsize(NativeTextUtils.TruncateAt.END);
+        //label.text = generateRandomStr();
+        label.text = "Label";
+
         const button = new Button();
         button.text = "Test Button";
-        button.backgroundColor = Color.BLUE;
-        flexlayout2.addChild(button);
-        flexlayout.addChild(flexlayout2);
+        button.onPress = () => {
+            label.text = generateRandomStr();
+            //@ts-ignore
+            label.yogaNode.dirty();
+        }
+        
+        flexLayout.addChild(label);
+        flexLayout.alignItems = FlexLayout.AlignItems.CENTER;
+        flexLayout.alignContent = FlexLayout.AlignContent.CENTER;
+        flexLayout.justifyContent = FlexLayout.JustifyContent.CENTER;
+        flexLayout.addChild(button);
+
+        this.addViewToPageLayout(flexLayout.nativeObject);
+    }
+
+    simpleLabelTest2() {
+        this.clearPageLayout();
+
+        const flexLayout = new FlexLayout();
+        
+        flexLayout.backgroundColor = Color.YELLOW;
+
+        const flexLayout2 = new FlexLayout();
         //@ts-ignore
-        pageLayout.addView(flexlayout.nativeObject);*/
+        flexLayout.yogaNode.setHeightAuto();
+        flexLayout.backgroundColor = Color.BLUE;
 
-        /*this.btnNext.onPress = () => {
-            myTextview.nativeObject.setText("" + generateRandomStr());
-            //this.router.push('/pages/page2', { message: 'Hello World!' });
-            this.layout.applyLayout();
-        };*/
+        const label = new Label();
+        label.backgroundColor = Color.WHITE;
+        label.text = generateRandomStr();
 
-        const ListView = require('@smartface/native/ui/listview');
-        const ListViewItem = require('@smartface/native/ui/listviewitem');
-        const Label = require('@smartface/native/ui/label');
+        const button = new Button();
+        button.text = "Test Button";
+        button.onPress = () => {
+            label.text = generateRandomStr();
+            //@ts-ignore
+            label.yogaNode.dirty();   
+            flexLayout2.yogaNode.setHeightAuto();
 
-        var myDataSet = [
-            {
-                title: generateRandomStr(),
-                backgroundColor: Color.RED
-            },
-            {
-                title: generateRandomStr(),
-                backgroundColor: Color.CYAN
-            },
-            {
-                title: generateRandomStr(),
-                backgroundColor: Color.YELLOW
-            },
-            {
-                title: generateRandomStr(),
-                backgroundColor: Color.GRAY
-            }
-        ];
+        }
+        
+        flexLayout2.addChild(label);
+        flexLayout2.addChild(button);
+        flexLayout.addChild(flexLayout2);
+        
+        flexLayout2.flexGrow = 0;
+        flexLayout2.alignItems = AlignItems.CENTER;
+        flexLayout2.justifyContent = FlexLayout.JustifyContent.CENTER;
+
+        this.addViewToPageLayout(flexLayout.nativeObject);
+    }
+
+    simpleLabelTestNested() {
+        this.clearPageLayout();
+
+        const flexLayout = new FlexLayout();
+        flexLayout.backgroundColor = Color.YELLOW;
+        //@ts-ignore
+        flexLayout.yogaNode.setHeightAuto();
+
+        const flexLayout2 = new FlexLayout();
+        flexLayout2.padding = 10;
+        flexLayout2.backgroundColor = Color.BLUE;
+
+        const flexLayout3 = new FlexLayout();
+        flexLayout3.padding = 10;
+        flexLayout3.backgroundColor = Color.RED;
+
+        const label = new Label();
+        label.backgroundColor = Color.WHITE;
+        label.text = generateRandomStr();
+
+        const button = new Button();
+        button.text = "Test Button";
+        button.backgroundColor = Color.CYAN;
+        button.onPress = () => {
+            label.text = generateRandomStr();
+            //@ts-ignore
+            label.yogaNode.dirty();   
+        }
+        
+        flexLayout3.addChild(label);
+        flexLayout3.addChild(button);
+        flexLayout2.addChild(flexLayout3);
+        flexLayout.addChild(flexLayout2);
+
+        this.addViewToPageLayout(flexLayout.nativeObject);
+    }
+
+    simleListViewTest() {
+        this.clearPageLayout();
+
+        let myDataSet = generateRandomList();
+
         var myListView = new ListView({
             flexGrow: 1,
-            rowHeight: 60,
             backgroundColor: Color.BLUE,
             itemCount: myDataSet.length,
+            refreshEnabled: false,
         });
+
         myListView.onRowCreate = function () {
-            var myListViewItem = new ListViewItem();
-            myListView.backgroundColor = Color.BLACK;
-            var myLabelTitle = new Label({
-                /*alignSelf: FlexLayout.AlignSelf.FLEX_START,
-                textAlignment: TextAlignment.TOPLEFT*/
-            });
-            myListViewItem.addChild(myLabelTitle);
+            const myListViewItem = new ListViewItem();
+            var myLabelTitle = new Label();
+            //@ts-ignore
             myListViewItem.myLabelTitle = myLabelTitle;
+            myListViewItem.addChild(myLabelTitle);
+            return myListViewItem;
+        };
+        myListView.onRowBind = function (listViewItem, index) {
+            
+            //@ts-ignore
+            const label: Label = listViewItem.myLabelTitle;
+            label.maxLines = 3;
+            label.backgroundColor = index % 2 == 0 ? Color.GREEN : Color.CYAN;
+            label.text = myDataSet[index];
+
+            //@ts-ignore
+            label.yogaNode.dirty()
+            //@ts-ignore
+            listViewItem.yogaNode.setHeightAuto();
+
+        };
+
+        const btn = new Button();
+        btn.text = "Update";
+        btn.onPress = () => {
+            myDataSet = generateRandomList();
+            myListView.refreshData();
+        }
+
+        const flexlayout = new FlexLayout({});
+        flexlayout.addChild(myListView);
+        flexlayout.addChild(btn);
+        this.addViewToPageLayout(flexlayout.nativeObject);
+    }
+
+    simleListViewTest2() {
+        this.clearPageLayout();
+
+        let myDataSet = generateRandomList();
+
+        var myListView = new ListView({
+            flexGrow: 1,
+            backgroundColor: Color.BLUE,
+            itemCount: myDataSet.length,
+            refreshEnabled: false,
+        });
+
+        myListView.onRowCreate = function () {
+            const myListViewItem = new ListViewItem();
+            var myLabelTitle = new Label();
+
+            const flexLayout = new FlexLayout();
+            flexLayout.addChild(myLabelTitle);
+            myListViewItem.addChild(flexLayout);
+
+            //@ts-ignore
+            myListViewItem.myLabelTitle = myLabelTitle;
+            //@ts-ignore
+            myListViewItem.flexLayout = flexLayout
 
             return myListViewItem;
         };
         myListView.onRowBind = function (listViewItem, index) {
-            listViewItem.myLabelTitle.text = myDataSet[index].title;
-            listViewItem.myLabelTitle.yogaNode.calculateLayout(1000, 1000);
-            //listViewItem.yogaNode.calculateLayout(1000, 100);
-            //listViewItem.yogaNode.calculateLayout(500, 500);
-            listViewItem.myLabelTitle.backgroundColor = index % 2 == 0 ? Color.GREEN : Color.CYAN;
-        };
-        myListView.onRowSelected = function (listViewItem, index) {
-            console.log("selected index = " + index)
-        };
-        myListView.onPullRefresh = function () {
-            myDataSet.push({
-                title: generateRandomStr(),
-                backgroundColor: Color.RED,
-            })
-            myListView.itemCount = myDataSet.length;
-            myListView.refreshData();
-            myListView.stopRefresh();
+            //@ts-ignore
+            const label: Label = listViewItem.myLabelTitle;
+            label.backgroundColor = index % 2 == 0 ? Color.GREEN : Color.CYAN;
+            label.text = myDataSet[index];
+
+            //@ts-ignore
+            label.yogaNode.dirty()
+
+            //@ts-ignore
+            listViewItem.yogaNode.setHeightAuto();
+
         };
 
-        //@ts-ignore    
-        pageLayout.removeAllViews();
+        const btn = new Button();
+        btn.text = "Update";
+        btn.onPress = () => {
+            myDataSet = generateRandomList();
+            myListView.refreshData();
+        }
 
         const flexlayout = new FlexLayout({});
-
-        flexlayout.alignItems = FlexLayout.AlignItems.CENTER;
-        flexlayout.justifyContent = FlexLayout.JustifyContent.CENTER;
-        flexlayout.padding = 10;
-        flexlayout.backgroundColor = Color.GREEN;
-
         flexlayout.addChild(myListView);
-
-        pageLayout.addView(flexlayout.nativeObject);
+        flexlayout.addChild(btn);
+        this.addViewToPageLayout(flexlayout.nativeObject);
     }
+
+    simpleTextInputTest() {
+        this.clearPageLayout();
+
+        const flexLayout = new FlexLayout();
+        flexLayout.backgroundColor = Color.YELLOW;
+
+        const label = new Label();
+        label.backgroundColor = Color.WHITE;
+        label.maxLines = 3;
+        const NativeTextUtils = requireClass("android.text.TextUtils");
+        //@ts-ignore
+        label.nativeObject.setEllipsize(NativeTextUtils.TruncateAt.END);
+        label.text = generateRandomStr();
+
+        const mtb = new MaterialTextBox();
+        mtb.multiline = true;
+        mtb.text = generateRandomStr();
+        mtb.backgroundColor = Color.CYAN;
+
+        mtb.onTextChanged = () => {
+            console.log("onTextChanged");
+            mtb.yogaNode.dirty();
+        }
+
+        const button = new Button();
+        button.text = "Test Button";
+        button.onPress = () => {
+            label.text = generateRandomStr();
+            //@ts-ignore
+            label.yogaNode.dirty();
+        }
+        
+        
+        flexLayout.addChild(label);
+        flexLayout.addChild(mtb);
+        flexLayout.alignItems = FlexLayout.AlignItems.CENTER;
+        flexLayout.alignContent = FlexLayout.AlignContent.CENTER;
+        flexLayout.justifyContent = FlexLayout.JustifyContent.CENTER;
+        flexLayout.addChild(button);
+
+        this.addViewToPageLayout(flexLayout.nativeObject);
+    }
+
+    simleListViewMtbTest() {
+        this.clearPageLayout();
+
+        let myDataSet = generateRandomList();
+
+        var myListView = new ListView({
+            flexGrow: 1,
+            backgroundColor: Color.BLUE,
+            itemCount: myDataSet.length,
+            refreshEnabled: false,
+        });
+
+        myListView.onRowCreate = function () {
+            const myListViewItem = new ListViewItem();
+            var myLabelTitle = new Label();
+            //@ts-ignore
+            myListViewItem.myLabelTitle = myLabelTitle;
+            myListViewItem.addChild(myLabelTitle);
+            const mtb = new MaterialTextBox();
+            mtb.multiline = true;
+            mtb.text = generateRandomStr();
+            mtb.backgroundColor = Color.CYAN;
+
+            
+            //myListViewItem.yogaNode.dirty();
+
+            mtb.onTextChanged = () => {
+                console.log("onTextChanged");
+                mtb.yogaNode.dirty();
+                //myListViewItem.nativeObject.getParent().requestLayout();
+            }
+            myListViewItem.addChild(mtb);
+
+            mtb.yogaNode.dirty();
+            myListViewItem.yogaNode.setHeightAuto();
+
+            return myListViewItem;
+        };
+        myListView.onRowBind = function (listViewItem, index) {
+            
+            //@ts-ignore
+            const label: Label = listViewItem.myLabelTitle;
+            label.maxLines = 3;
+            label.backgroundColor = index % 2 == 0 ? Color.GREEN : Color.CYAN;
+            label.text = myDataSet[index];
+
+            //@ts-ignore
+            label.yogaNode.dirty()
+            //@ts-ignore
+            listViewItem.yogaNode.setHeightAuto();
+
+        };
+
+        const btn = new Button();
+        btn.text = "Update";
+        btn.onPress = () => {
+            myDataSet = generateRandomList();
+            myListView.refreshData();
+        }
+
+        const flexlayout = new FlexLayout({});
+        flexlayout.addChild(myListView);
+        flexlayout.addChild(btn);
+        this.addViewToPageLayout(flexlayout.nativeObject);
+    }
+
+
 }
 
 /**
@@ -211,7 +417,6 @@ function onLoad(this: Page1, superOnLoad: () => void) {
     this.lbl.padding
     componentContextPatch(this.headerBar.titleLayout, 'titleLayout');
     if (System.OS === 'Android') {
-
         this.headerBar.title = '';
     }
 }
